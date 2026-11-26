@@ -1,0 +1,11 @@
+{
+  "name": "sistema-educativo-railway",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Entrada de despliegue para el sistema educativo alojado en backend/",
+  "scripts": {
+    "build": "npm --prefix backend ci",
+    "start": "npm --prefix backend start",
+    "migrate:prod": "npm --prefix backend run migrate:prod"
+  }
+}

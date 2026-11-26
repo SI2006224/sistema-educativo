@@ -10,8 +10,8 @@
     "logging": false
   },
   "production": {
-    "dialect": "sqlite",
-    "storage": "../data/database.sqlite",
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
     "logging": false
   }
 }

@@ -62,6 +62,10 @@ app.use((err, req, res, next) => {
 // Iniciar servidor
 async function startServer() {
   try {
+    if (process.env.NODE_ENV === 'production' && (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32)) {
+      throw new Error('En producción, JWT_SECRET debe tener al menos 32 caracteres.');
+    }
+
     // Sincronizar base de datos
     await sequelize.authenticate();
     console.log('✅ Conexión a la base de datos establecida.');
@@ -72,8 +76,13 @@ async function startServer() {
 	console.log('✅ Base de datos lista (migraciones aplicadas).');
     }
     
-    // Iniciar servicio de backups automáticos
-    backupService.iniciarBackupAutomatico();
+    // PostgreSQL debe respaldarse con la función de backups del proveedor cloud.
+    // El respaldo local del proyecto solo aplica cuando se usa SQLite.
+    if (process.env.DATABASE_URL) {
+      console.log('ℹ️ PostgreSQL activo; usa los backups administrados del proveedor.');
+    } else {
+      backupService.iniciarBackupAutomatico();
+    }
     
     // Iniciar servidor
     app.listen(PORT, () => {
@@ -91,7 +100,9 @@ startServer();
 // Manejo de cierre graceful
 process.on('SIGINT', async () => {
   console.log('\n🛑 Cerrando servidor...');
-  await backupService.realizarBackupManual();
+  if (!process.env.DATABASE_URL) {
+    await backupService.realizarBackupManual();
+  }
   process.exit(0);
 });
 

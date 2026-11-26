@@ -2,16 +2,7 @@ const { Sequelize } = require('sequelize');
 const path = require('path');
 require('dotenv').config();
 
-// La ruta se resuelve desde backend/ (dos niveles arriba de src/config/)
-const storagePath = path.resolve(
-  __dirname,
-  '../../',
-  process.env.DB_STORAGE || '../data/database.sqlite'
-);
-
-const sequelize = new Sequelize({
-  dialect: process.env.DB_DIALECT || 'sqlite',
-  storage: storagePath,
+const commonOptions = {
   logging: false,
   define: {
     timestamps: true,
@@ -23,7 +14,34 @@ const sequelize = new Sequelize({
     acquire: 30000,
     idle: 10000
   }
-});
+};
+
+let sequelize;
+
+if (process.env.DATABASE_URL) {
+  // Railway entrega DATABASE_URL para conectar el backend con PostgreSQL.
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    ...commonOptions,
+    dialect: 'postgres'
+  });
+} else {
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('Falta DATABASE_URL: en producción el sistema requiere PostgreSQL.');
+  }
+
+  // En desarrollo local se sigue usando la base SQLite del proyecto.
+  const storagePath = path.resolve(
+    __dirname,
+    '../../',
+    process.env.DB_STORAGE || '../data/database.sqlite'
+  );
+
+  sequelize = new Sequelize({
+    ...commonOptions,
+    dialect: 'sqlite',
+    storage: storagePath
+  });
+}
 
 module.exports = sequelize;
 

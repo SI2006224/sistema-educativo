@@ -1,0 +1,16 @@
+'use strict';
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('materias', {
+      id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+      nombre: { type: Sequelize.STRING(100), allowNull: false, unique: true },
+      activo: { type: Sequelize.BOOLEAN, defaultValue: true },
+      created_at: { type: Sequelize.DATE, allowNull: false },
+      updated_at: { type: Sequelize.DATE, allowNull: false }
+    });
+  },
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('materias');
+  }
+};

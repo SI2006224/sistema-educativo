@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema Educativo</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/mobile.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Barra superior -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <img src="/assets/logo.png" alt="Logo" class="top-logo">
+                <span class="top-title">Sistema Educativo</span>
+            </div>
+            <div class="top-bar-right">
+                <span id="user-name" class="user-name">Usuario</span>
+                <button id="logout-btn" class="btn-logout">Cerrar Sesión</button>
+            </div>
+        </header>
+        
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h2>Panel de Control</h2>
+                <p id="dashboard-date">Cargando...</p>
+            </div>
+            
+            <!-- Tarjetas de estadísticas -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍🎓</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-estudiantes">0</span>
+                        <span class="stat-label">Estudiantes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📋</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-cursos">0</span>
+                        <span class="stat-label">Cursos</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="asistencia-hoy">0%</span>
+                        <span class="stat-label">Asistencia hoy</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="promedio-general">0.0</span>
+                        <span class="stat-label">Promedio general</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Acciones rápidas -->
+            <div class="quick-actions">
+                <h3>Acciones Rápidas</h3>
+                <div class="actions-grid">
+                    <button class="action-btn" data-view="asistencias">
+                        <span class="action-icon">📝</span>
+                        Registrar Asistencia
+                    </button>
+                    <button class="action-btn" data-view="notas">
+                        <span class="action-icon">📚</span>
+                        Registrar Notas
+                    </button>
+                    <button class="action-btn" data-view="reportes">
+                        <span class="action-icon">📄</span>
+                        Generar Reporte
+                    </button>
+                    <button class="action-btn" data-view="estudiantes">
+                        <span class="action-icon">👥</span>
+                        Gestionar Estudiantes
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Últimas actividades -->
+            <div class="recent-activity">
+                <h3>Últimas Actividades</h3>
+                <div id="recent-list" class="activity-list">
+                    <p class="loading-text">Cargando actividades...</p>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Barra de navegación inferior (móvil) -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-view="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Inicio</span>
+            </button>
+            <button class="nav-item" data-view="cursos">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">Cursos</span>
+            </button>
+            <button class="nav-item" data-view="estudiantes">
+                <span class="nav-icon">👨‍🎓</span>
+                <span class="nav-label">Estudiantes</span>
+            </button>
+            <button class="nav-item" data-view="asistencias">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">Asistencias</span>
+            </button>
+            <button class="nav-item" data-view="notas">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Notas</span>
+            </button>
+            <button class="nav-item" data-view="reportes">
+                <span class="nav-icon">📄</span>
+                <span class="nav-label">Reportes</span>
+            </button>
+        </nav>
+    </div>
+    
+    <script src="/js/utils.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/components/auth.js"></script>
+    <script src="/js/components/dashboard.js"></script>
+    <script src="/js/components/cursos.js"></script>
+    <script src="/js/components/estudiantes.js"></script>
+    <script src="/js/components/asistencias.js"></script>
+    <script src="/js/components/notas.js"></script>
+    <script src="/js/components/reportes.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>

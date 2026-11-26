@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sistema de Gestión Educativa</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/mobile.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Contenido dinámico -->
+        <main id="main-content"></main>
+        
+        <!-- Barra de navegación inferior (visible solo si está autenticado) -->
+        <nav id="bottom-nav" class="bottom-nav hidden">
+            <a href="#" data-view="dashboard" class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Inicio</span>
+            </a>
+            <a href="#" data-view="eventos" class="nav-item">
+            <span class="nav-icon">📅</span>
+            <span class="nav-label">Eventos</span>
+             </a>
+            <a href="#" data-view="cursos" class="nav-item">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">Cursos</span>
+            </a>
+            <a href="#" data-view="estudiantes" class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span class="nav-label">Alumnos</span>
+            </a>
+            <a href="#" data-view="asistencias" class="nav-item">
+                <span class="nav-icon">✅</span>
+                <span class="nav-label">Asist.</span>
+            </a>
+            <a href="#" data-view="notas" class="nav-item">
+                <span class="nav-icon">📝</span>
+                <span class="nav-label">Notas</span>
+            </a>
+            <a href="#" data-view="reportes" class="nav-item">
+                <span class="nav-icon">📄</span>
+                <span class="nav-label">Reportes</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/utils.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/components/auth.js"></script>
+    <script src="/js/components/dashboard.js"></script>
+    <script src="/js/components/cursos.js"></script>
+    <script src="/js/components/estudiantes.js"></script>
+    <script src="/js/components/asistencias.js"></script>
+    <script src="/js/materias.js"></script>
+    <script src="/js/components/notas.js"></script>
+    <script src="/js/components/eventos.js"></script>
+    <script src="/js/components/reportes.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
